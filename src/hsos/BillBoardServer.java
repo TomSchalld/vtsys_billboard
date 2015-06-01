@@ -27,6 +27,7 @@ public class BillBoardServer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	System.out.println("DOGET");
         String caller_ip = request.getRemoteAddr();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
