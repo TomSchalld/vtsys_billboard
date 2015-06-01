@@ -52,6 +52,7 @@ public class BillBoardServer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO implementation of doPost()!
+    	doGet(request, response);
     }
 
     /**
