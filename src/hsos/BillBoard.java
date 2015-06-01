@@ -54,7 +54,7 @@ public class BillBoard {
         public String getEntry(String caller_ip) {
             StringBuilder result = new StringBuilder();
             result.append("<tr>"
-                    + "<td>" + this.id + "</td>\n");
+                    + "<td >" + this.id + "</td>\n");
             result.append("<td>");
             String disable_edits = "";
 
@@ -69,16 +69,16 @@ public class BillBoard {
             result.append("</td>");
             result.append("<td>");
             if (belongsToCaller(caller_ip)) {
-                result.append("<button onClick=\"putHttpRequest('" +  
-                        BillBoard.servlet_ctxt + "',"
-                        + id + ")\">Update</button>");
+                result.append("<button id=\'" + this.id + "\' class=\'updatebutton "+  
+                        BillBoard.servlet_ctxt + " "
+                        + id + "\'>Update</button>");
             }
             result.append("</td>");
             result.append("<td>");
             if (belongsToCaller(caller_ip)) {
-                result.append("<button onClick=\"deleteHttpRequest('" +  
-                        BillBoard.servlet_ctxt + "',"
-                        + + id + ")\">Delete</button>");
+                result.append("<button id=\'" + this.id + "\' class=\'deletebutton "+  
+                        BillBoard.servlet_ctxt + " "
+                        + id + "\'>Delete</button>");
             }
             result.append("</td>");
             result.append("</tr>");

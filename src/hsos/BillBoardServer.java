@@ -52,7 +52,9 @@ public class BillBoardServer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO implementation of doPost()!
-    	doGet(request, response);
+    	System.out.println("DoPost success");
+    	bb.createEntry(request.getParameter("text"), request.getRemoteAddr());
+    	System.out.println("DoPost success");
     }
 
     /**
@@ -67,6 +69,9 @@ public class BillBoardServer extends HttpServlet {
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO implementation of doPost()!
+    	System.out.println("DELETE");
+    	System.out.println(request.getParameter("index"));
+    	//bb.deleteEntry(Integer.parseInt(request.getParameter("indexToDelete")));
     }
     
     /**
@@ -81,6 +86,8 @@ public class BillBoardServer extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO implementation of doPost()!
+    	System.out.println("PUT");
+    	bb.updateEntry(Integer.parseInt(request.getParameter("indexToUpdate")), request.getParameter("text"), request.getRemoteAddr());
     }
     
     /**

@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Billboard</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <script type="text/javascript" src="billboard.js"></script>
-    </head>
-    <body style="font-family:arial;">
-        <h1>Plakatwand</h1> 
-        <h3>Neues Plakat einstellen:</h3>
-        <input type="text" size="100" maxlength="100" id="contents">
-        <button onClick="postHttpRequest('BillBoardServer')">Post</button>
-        <h3>Plakate:</h3>
-        <div id="posters">
-        </div>
-        <br>
-        <div id="timestamp" style="font-family:arial;font-size:10pt;">
-        </div>
-        <script type="text/javascript">
-            window.setInterval(function() {
-                getHttpRequest('BillBoardServer');
-                $('timestamp').innerHTML = new Date().toString();
-            }, 10000);
-        </script>
-    </body>
+<head>
+<title>Billboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+</head>
+<body style="font-family: arial;">
+	<h1>Plakatwand</h1>
+	<h3>Neues Plakat einstellen:</h3>
+	<input id="contents" type="text" size="100" maxlength="100">
+	<button id="postbutton">Post</button>
+	<h3>Plakate:</h3>
+	<div id="posters"></div>
+	<br>
+	<div id="timestamp" style="font-family: arial; font-size: 10pt;">
+	</div>
+</body>
+<script type="text/javascript" src="billboard.js"></script>
 </html>

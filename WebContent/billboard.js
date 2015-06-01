@@ -1,39 +1,88 @@
-function $(id) {
-    return document.getElementById(id);
-}
+var url = "BillBoardServer";
 
-function getHttpRequest(url) {
-    var xmlhttp = null;
-    // Mozilla
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    }
-    // IE
-    else if (window.ActiveXObject) {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-   
-    xmlhttp.open("GET", url, true);
-    xmlhttp.onreadystatechange = function() {
-        if(xmlhttp.readyState != 4) {
-            $('posters').innerHTML = 'Seite wird geladen ...';
-        }
-        if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            $('posters').innerHTML = xmlhttp.responseText;
-        }
-    }
-    xmlhttp.send(null);
-}
+var postHttpRequest = function(url) {
+	var text = $('#contents').val();
+	$.ajaxSetup({
+		url : url,
+		global : false,
+		type : "POST"
+	});
+	$.ajax({
+		data : {
+			"text" : text
+		}
+	});
+};
+var putHttpRequest = function(url, id) {
+	var iF = "'#input_field_";
+	iF += id;
+	iF += "'";
+	var text = $(iF).val();
+	$.ajaxSetup({
+		url : url,
+		global : false,
+		type : "PUT"
+	});
+	$.ajax({
+		data : {
+			"indexToUpdate" : id,
+			"text" : text
 
-function postHttpRequest(url) {
-    // TO BE IMPLEMENTED!!!
-	getHttpRequest(url);
-}
+		}
+	});
+};
+var deleteHttpRequest = function(url, id) {
+	alert(url + id);
+	$.ajaxSetup({
+		url : url,
+		global : false,
+		type : "DELETE"
+	});
+	$.ajax({
+		data : {
+			"index" : "test"
+		}
+	});
+};
+var getHttpRequest = function(url) {
+	$.ajaxSetup({
+		url : url,
+		global : true,
+		type : "GET"
+	});
+	$.ajax({
+		data : {
 
-function putHttpRequest(url, id) {
-    // TO BE IMPLEMENTED!!!
-}
+		},
+		success : function(result) {
+			$('#posters').html(result);
+			$('.updatebutton').click(function() {
+				putHttpRequest(url, this.id);
+			});
+			$('.deletebutton').click(function() {
 
-function deleteHttpRequest(url, id) {
-    // TO BE IMPLEMENTED!!!
-}
+				deleteHttpRequest(url, this.id);
+			});
+		},
+		error : function(error) {
+			$('#posters').html('Seite wird geladen ...');
+
+		}
+	});
+
+};
+$(window).load(function() {
+	window.setInterval(function() {
+		getHttpRequest('BillBoardServer');
+		$('#timestamp').html(new Date().toString());
+	}, 8000);
+
+});
+$('#postbutton').click(function() {
+	postHttpRequest(url);
+});
+/*
+ * $('#updatebutton').click(function() { alert("update"); });
+ * $('#deletebutton').click(function() { alert("delete"); });
+ */
+

@@ -21,7 +21,7 @@
  
    <servlet-mapping>
       <servlet-name>BillBoardServerServlet</servlet-name>
-      <url-pattern>/</url-pattern>
+      <url-pattern>/BillBoardServer</url-pattern>
    </servlet-mapping>
 
 </web-app>
