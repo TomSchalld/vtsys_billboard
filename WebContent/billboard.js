@@ -27,7 +27,7 @@ function getHttpRequest(url) {
 
 function postHttpRequest(url) {
     // TO BE IMPLEMENTED!!!
-	//getHttpRequest(url);
+	getHttpRequest(url);
 }
 
 function putHttpRequest(url, id) {
