@@ -4,6 +4,8 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import org.json.JSONObject;
+
 /**
  * Implementierung des Billboards. 
  * Die Einträge werden in einer Liste vorgegebener Größe gespeichert.
@@ -44,7 +46,18 @@ public class BillBoard {
             this.text = "<empty>";
             owner_ip = "<not set>";
         }
-        
+        public JSONObject getEntryJSON(String caller_ip){
+			JSONObject entry = new JSONObject();
+				entry.put("id", id);
+				entry.put("text", text);
+        	 if (!belongsToCaller(caller_ip)) {
+                 entry.put("owner",false);
+             }else{
+            	 entry.put("owner",true);
+             }
+        	return entry;
+        	
+        }
         /**
          * Billboard-Eintrag wird als html-Tabellenzeile ausgegeben.
          * 
@@ -157,5 +170,14 @@ public class BillBoard {
             result.append(e.getEntry(caller_ip));
         }
         return result.toString();
+    };    
+    public JSONObject readContentsJSON(String caller_ip) {
+    	Integer i=0;
+    	JSONObject responseObject = new JSONObject();
+    	for (BillBoardEntry e : billboard) {
+    		responseObject.put(i.toString(), e.getEntryJSON(caller_ip));
+    		i++;
+    	}
+    	return responseObject;
     };    
 }
