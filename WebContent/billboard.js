@@ -1,5 +1,9 @@
 var url = "BillBoardServer";
-
+var fillUpPage = function(result){
+	$.each( result, function( key, val ) {
+	    console.log(val);
+	  });
+}
 var postHttpRequest = function(url) {
 	var text = $('#contents').val();
 	$.ajaxSetup({
@@ -44,6 +48,11 @@ var deleteHttpRequest = function(url, id) {
 	});
 };
 var getHttpRequest = function(url) {
+	/*$.ajaxSetup({
+		url : url,
+		global : true,
+		type : "GET"
+	});*/
 	$.ajaxSetup({
 		url : url,
 		global : true,
@@ -55,7 +64,7 @@ var getHttpRequest = function(url) {
 
 		},
 		success : function(result) {
-			console.log(result);
+			fillUpPage(result);
 			$('#posters').html(result);
 			$('.updatebutton').click(function() {
 				putHttpRequest(url, this.id);

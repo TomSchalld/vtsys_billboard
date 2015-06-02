@@ -36,10 +36,11 @@ public class BillBoardServer extends HttpServlet {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         JSONObject output= bb.readContentsJSON(caller_ip);
-        //String table = bb.readContents(caller_ip);
+       // String table = bb.readContents(caller_ip);
         
         try {
-            out.println(output.toString());
+           // out.println(table);
+           out.println(output.toString());
         } finally {
             out.close();
             System.out.println("DOGET done");
