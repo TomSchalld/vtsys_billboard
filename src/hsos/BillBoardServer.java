@@ -4,15 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-
+import org.json.*;
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import sun.misc.IOUtils;
-import sun.security.x509.IssuerAlternativeNameExtension;
 
 /**
  *
@@ -36,14 +32,18 @@ public class BillBoardServer extends HttpServlet {
             throws ServletException, IOException {
     	System.out.println("DOGET");
         String caller_ip = request.getRemoteAddr();
-        response.setContentType("text/html;charset=UTF-8");
+        //response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-
+        JSONObject output = new JSONObject();
+        output.put("id", "0");
+        output.put("text","Kuchen");
         String table = bb.readContents(caller_ip);
         try {
-            out.println(table);
+            out.println(output.toString());
         } finally {
             out.close();
+            System.out.println("DOGET done");
         }
     }
 
@@ -114,5 +114,5 @@ public class BillBoardServer extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }

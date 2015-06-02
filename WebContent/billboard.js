@@ -48,13 +48,15 @@ var getHttpRequest = function(url) {
 	$.ajaxSetup({
 		url : url,
 		global : true,
-		type : "GET"
+		type : "GET",
+		dataType: "json"
 	});
 	$.ajax({
 		data : {
 
 		},
 		success : function(result) {
+			console.log(result);
 			$('#posters').html(result);
 			$('.updatebutton').click(function() {
 				putHttpRequest(url, this.id);
