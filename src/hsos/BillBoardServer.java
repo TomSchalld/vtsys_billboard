@@ -80,10 +80,10 @@ public class BillBoardServer extends HttpServlet {
     	String s = "";
     	BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
     	for (String buffer;(buffer = in.readLine()) != null;s+=buffer + "\n");
-    	System.out.println(s);
-    	
-    	//System.out.println(istream.read());
-    	//bb.deleteEntry(Integer.parseInt(request.getParameter("indexToDelete")));
+    	String [] splitter = s.split("=");
+    	System.out.println("delete id: "+splitter[1]);
+
+    	bb.deleteEntry(Integer.parseInt(splitter[1].trim()));
     }
     
     /**
@@ -102,7 +102,11 @@ public class BillBoardServer extends HttpServlet {
     	String s = "";
     	BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
     	for (String buffer;(buffer = in.readLine()) != null;s+=buffer + "\n");
-    	System.out.println(s);
+    	String []splitter = s.split("=|&");
+    	bb.updateEntry(Integer.parseInt(splitter[1].trim()), splitter[3], request.getRemoteAddr());
+    	System.out.println("update id: "+splitter[1]);
+    	System.out.println("update text: "+splitter[3]);
+
     }
     
     /**

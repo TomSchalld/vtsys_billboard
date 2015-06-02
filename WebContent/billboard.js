@@ -14,10 +14,10 @@ var postHttpRequest = function(url) {
 	});
 };
 var putHttpRequest = function(url, id) {
-	var iF = "'#input_field_";
+	var iF = "input_field_";
 	iF += id;
-	iF += "'";
-	var text = $(iF).val();
+	var text = $("#"+iF).val();
+	alert(text);
 	$.ajaxSetup({
 		url : url,
 		global : false,
@@ -32,7 +32,6 @@ var putHttpRequest = function(url, id) {
 	});
 };
 var deleteHttpRequest = function(url, id) {
-	alert(url + id);
 	$.ajaxSetup({
 		url : url,
 		global : false,
@@ -40,7 +39,7 @@ var deleteHttpRequest = function(url, id) {
 	});
 	$.ajax({
 		data : {
-			"text" : "test"
+			"idToDelete" : id.toString()
 		}
 	});
 };
