@@ -70,7 +70,7 @@ public class BillBoardServer extends HttpServlet {
             throws ServletException, IOException {
         // TODO implementation of doPost()!
     	System.out.println("DELETE");
-    	System.out.println(request.getParameter("index"));
+    	System.out.println(request.getParameter("text"));
     	//bb.deleteEntry(Integer.parseInt(request.getParameter("indexToDelete")));
     }
     

@@ -40,7 +40,7 @@ var deleteHttpRequest = function(url, id) {
 	});
 	$.ajax({
 		data : {
-			"index" : "test"
+			"text" : "test"
 		}
 	});
 };
