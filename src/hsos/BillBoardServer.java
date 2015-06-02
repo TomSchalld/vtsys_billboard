@@ -35,10 +35,8 @@ public class BillBoardServer extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        JSONObject output = new JSONObject();
-        output.put("id", "0");
-        output.put("text","Kuchen");
-        String table = bb.readContents(caller_ip);
+        JSONObject output= bb.readContentsJSON(caller_ip);
+        //String table = bb.readContents(caller_ip);
         
         try {
             out.println(output.toString());
