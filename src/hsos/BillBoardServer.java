@@ -1,11 +1,18 @@
 package hsos;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sun.misc.IOUtils;
+import sun.security.x509.IssuerAlternativeNameExtension;
 
 /**
  *
@@ -70,7 +77,12 @@ public class BillBoardServer extends HttpServlet {
             throws ServletException, IOException {
         // TODO implementation of doPost()!
     	System.out.println("DELETE");
-    	System.out.println(request.getParameter("text"));
+    	String s = "";
+    	BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+    	for (String buffer;(buffer = in.readLine()) != null;s+=buffer + "\n");
+    	System.out.println(s);
+    	
+    	//System.out.println(istream.read());
     	//bb.deleteEntry(Integer.parseInt(request.getParameter("indexToDelete")));
     }
     
@@ -86,8 +98,11 @@ public class BillBoardServer extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO implementation of doPost()!
-    	System.out.println("PUT");
-    	bb.updateEntry(Integer.parseInt(request.getParameter("indexToUpdate")), request.getParameter("text"), request.getRemoteAddr());
+    	System.out.println("UPDATE");
+    	String s = "";
+    	BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+    	for (String buffer;(buffer = in.readLine()) != null;s+=buffer + "\n");
+    	System.out.println(s);
     }
     
     /**
