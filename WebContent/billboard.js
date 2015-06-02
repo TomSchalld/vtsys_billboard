@@ -4,7 +4,7 @@ var postHttpRequest = function(url) {
 	var text = $('#contents').val();
 	$.ajaxSetup({
 		url : url,
-		global : false,
+		global : true,
 		type : "POST"
 	});
 	$.ajax({
@@ -20,7 +20,7 @@ var putHttpRequest = function(url, id) {
 	alert(text);
 	$.ajaxSetup({
 		url : url,
-		global : false,
+		global : true,
 		type : "PUT"
 	});
 	$.ajax({
@@ -34,7 +34,7 @@ var putHttpRequest = function(url, id) {
 var deleteHttpRequest = function(url, id) {
 	$.ajaxSetup({
 		url : url,
-		global : false,
+		global : true,
 		type : "DELETE"
 	});
 	$.ajax({

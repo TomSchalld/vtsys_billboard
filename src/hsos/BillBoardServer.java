@@ -40,6 +40,7 @@ public class BillBoardServer extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String table = bb.readContents(caller_ip);
+        
         try {
             out.println(table);
         } finally {
